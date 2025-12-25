@@ -42,15 +42,15 @@ const handleOnChange =(event)=>{
   <textarea className="form-control" value={text} onChange={handleOnChange}   
   style={{backgroundColor: props.mode==='dark'?'#2b3136': props.mode==='red'?'#592222ff': props.mode==='blue'?'#232559ff':'white', color: props.mode==='dark'?'white': props.mode==='red' || props.mode==='blue'?'white':'black'}} id="exampleFormControlTextarea1" rows="8">
 </textarea>
-  <button className='btn btn-primary my-2' onClick={handleUpClick} style={getButtonStyle()}>Convert to uppercase</button>
-  <button className='btn btn-primary my-2 mx-2' onClick={handleLoClick} style={getButtonStyle()}>Convert to lowercase</button>
-  <button className='btn btn-primary my-2 mx-2' onClick={handleSaveFile} style={getButtonStyle()}>Save as PDF</button>
+  <button disabled={text.length===0} className='btn btn-primary my-2'  onClick={handleUpClick} style={getButtonStyle()}>Convert to uppercase</button>
+  <button disabled={text.length===0} className='btn btn-primary my-2 mx-2' onClick={handleLoClick} style={getButtonStyle()}>Convert to lowercase</button>
+  <button disabled={text.length===0} className='btn btn-primary my-2 mx-2' onClick={handleSaveFile} style={getButtonStyle()}>Save as PDF</button>
 
   </div>
   <div className="container" style={{color: props.mode==='dark'?'white': props.mode==='red' || props.mode==='blue'?'white':'black'}}>
       <h3>Summary of the text</h3>
-      <p>Words : {text.split(" ").length} | Characters : {text.length}</p>
-      <p>{0.008 * text.split(" ").length} Minutes to Read</p>
+      <p>Words : {text.split(" ").filter((element)=>{return element.length !==0}).length} | Characters : {text.length}</p>
+      <p>{0.008 * text.split(" ").filter((element)=>{return element.length !==0}).length} Minutes to Read</p>
       <h3>Preview</h3>
       <p>{text.length>0?text:"No Preview"}</p>
       <hr />
